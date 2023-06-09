@@ -10,4 +10,4 @@ descripción:  {type: String, required: true},//String
 })
 module.exports = mongoose.models.Pto1 || mongoose.model('Pto1', Pto1Schema);
 
-///ha
+///visual
