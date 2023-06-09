@@ -9,3 +9,5 @@ descripción:  {type: String, required: true},//String
  destacado:  {type: Boolean, required: true},//Boolean // solo algunos productos son destacados
 })
 module.exports = mongoose.models.Pto1 || mongoose.model('Pto1', Pto1Schema);
+
+///ha
