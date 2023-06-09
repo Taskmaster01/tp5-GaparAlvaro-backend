@@ -8,4 +8,4 @@ descripción:  {type: String, required: true},//String
  stock:  {type: Number, required: true},//Number
  destacado:  {type: Boolean, required: true},//Boolean // solo algunos productos son destacados
 })
-module.exports = mongoose.models.Pto1 || mongoose.model('Pto1', AgenteSchema);
+module.exports = mongoose.models.Pto1 || mongoose.model('Pto1', Pto1Schema);
