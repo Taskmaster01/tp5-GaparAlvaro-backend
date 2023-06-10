@@ -1,14 +1,15 @@
 const Producto = require('../models/producto');
 const productoCtrl = {}
-productoCtrl.getproductos = async (req, res) => {
+productoCtrl.getProductos = async (req, res) => {
     var productos = await Producto.find();
     res.json(productos);
 }
 productoCtrl.createProducto = async (req, res) => {
+    console.log(req.body);//añadido
     var producto = new Producto(req.body);
     try {
         await producto.save();
-        res.json({
+        res.status(200).json({ //res.json({
             'status': '1',
             'msg': 'Producto guardado.'
         })
