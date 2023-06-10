@@ -1,3 +1,4 @@
+const producto = require('../models/producto');
 const Producto = require('../models/producto');
 const productoCtrl = {}
 productoCtrl.getProductos = async (req, res) => {
@@ -20,10 +21,13 @@ productoCtrl.createProducto = async (req, res) => {
         })
     }
 }
+ 
+
 productoCtrl.getProducto = async (req, res) => {
     const producto = await Producto.findById(req.params.id);
     res.json(producto);
 }
+
 productoCtrl.editProducto = async (req, res) => {
     const vproducto = new Producto(req.body);
     try {
@@ -39,6 +43,18 @@ productoCtrl.editProducto = async (req, res) => {
         })
     }
 }
+
+productoCtrl.buscarProducto = async (req, res) => {
+   //  var criteria={'destacado': 'false'};
+  var criteria={};
+  if(req.query.destacado!=null && req.query.destacado!=""){
+    criteria.destacado = { $regex: req.query.destacado, $options: "i" }};
+    var productos = await Pasaje.find(criteria);
+    res.json(productos);
+
+}
+
+
 productoCtrl.deleteProducto = async (req, res) => {
     try {
         await Producto.deleteOne({ _id: req.params.id });
