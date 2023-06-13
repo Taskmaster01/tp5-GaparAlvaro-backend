@@ -5,7 +5,7 @@ ticketCtrl.createTicket= async (req, res) => {
     var ticket = new Ticket(req.body);
     try {
         await ticket.save();
-        res.json({
+        res.status(200).json({
         'status': '1',
         'msg': 'Ticket guardado.'})
     } catch (error) {
@@ -14,12 +14,22 @@ ticketCtrl.createTicket= async (req, res) => {
         'msg': 'Error procesando operacion.'})
     }
 }
-
-ticketCtrl.getTickets = async (req, res) => {
+///mostrar uno solo
+/*
+ticketCtrl.getTicket = async (req, res) => {
+    const ticket = await Ticket.findById(req.params.id);
+    res.json(ticket);
+}
+*/
+ticketCtrl.getTicket = async (req, res) => {
+    const ticket = await Ticket.findById(req.params.id).populate("ticketP");
+    res.json(ticket);
+}
+ 
+ticketCtrl.getTickets = async (req, res) => {//recupera todo
     var tickets = await Ticket.find().populate("ticketP");
     res.json(tickets);
 }
-
 
 ticketCtrl.deleteTicket= async (req, res)=>{
     try {
@@ -56,20 +66,28 @@ ticketCtrl.modificarTicket = async (req, res) => {
 
 ticketCtrl.getRecuperarTickets = async (req, res) => {
   //  var criteria={'categoriaEspectador': '/extranjero-local'};
-  var criteria={};
+  /*var criteria={};
   if(req.query.categoriaEspectador!=null && req.query.categoriaEspectador!=""){
-    criteria.categoriaEspectador = { $regex: req.query.categoriaEspectador, $options: "i" }};
+    criteria.categoriaEspectador = { $regex: req.query.categoriaEspectador, $options: "l" }};
     var tickets = await Ticket.find(criteria);
-    res.json(tickets);
-}
+    res.json(tickets);*/
+   let criteria={};
+   if(req.query.categoriaEspectador != null && req.query.categoriaEspectador != ""){
+    criteria.categoriaEspectador = req.query.categoriaEspectador;
+  }
+  var tickets = await Ticket.find({categoriaEspectador : 'l'});//(criteria);
+  res.json(tickets);
+//http://localhost:3000/api/ticket/categoriaEspectador mostrara todo los true
 
+}
+ 
 
 
 ////creado para la modificacion
-ticketCtrl.getTicket = async (req, res) => {
-    const ticket = await Pasaje.findById(req.params.id).populate("ticketP");
+/*ticketCtrl.getTicket = async (req, res) => {
+    const ticket = await espectador.findById(req.params.id).populate("ticketP");//pasaje era espectador
     res.json(ticket);
-}
+}*/
 
 
 

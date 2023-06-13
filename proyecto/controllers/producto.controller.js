@@ -1,4 +1,5 @@
-const producto = require('../models/producto');
+//const producto = require('../models/producto');
+//const producto = require('../models/producto');
 const Producto = require('../models/producto');
 const productoCtrl = {}
 productoCtrl.getProductos = async (req, res) => {
@@ -46,12 +47,19 @@ productoCtrl.editProducto = async (req, res) => {
 
 productoCtrl.buscarProducto = async (req, res) => {
    //  var criteria={'destacado': 'false'};
-  var criteria={};
-  if(req.query.destacado!=null && req.query.destacado!=""){
+  let criteria={};
+  if(req.query.destacado != null && req.query.destacado != ""){
+    criteria.destacado = req.query.destacado;
+  }
+    /*
     criteria.destacado = { $regex: req.query.destacado, $options: "i" }};
     var productos = await Pasaje.find(criteria);
+    res.json(productos);*/
+    /*const vproducto = new Producto.find(destacado,true);
+    res.json(producto)*/
+    var productos = await Producto.find({destacado:true});//(criteria);
     res.json(productos);
-
+//http://localhost:3000/api/producto/destacado mostrara todo los true
 }
 
 
