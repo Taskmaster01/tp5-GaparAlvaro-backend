@@ -1,0 +1,16 @@
+ 
+ 
+    <tr *ngFor="let produ of produs">
+        <div class="card" style="width: 18rem;">
+            <img src="" class="card-img-top" alt="...">{{produ.imagen}}
+            <h5 class="card-title"></h5>
+                <h1>{{produ.nombre}}</h1>
+    
+                <div class="card-body">
+                    <p class="card-text">{{produ.descripcion}} ,</p>
+                    <p class="card-text">precio: {{produ.precio}} ,</p>
+                    <p class="card-text">stock disponible: {{produ.stock}} ,</p> 
+                </div>
+        </div>
+        
+    </tr> 

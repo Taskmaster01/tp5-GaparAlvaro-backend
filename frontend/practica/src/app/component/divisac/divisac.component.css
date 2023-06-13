@@ -1,0 +1,16 @@
+div{
+    color: white;
+}
+aside div {
+    margin-top: 10px;
+    background: transparent;
+}
+ select{
+  width : 100px;
+   height : auto;
+}
+
+#email input{
+    width : 400px; 
+    height : auto;
+}
