@@ -57,7 +57,7 @@ productoCtrl.buscarProducto = async (req, res) => {
     res.json(productos);*/
     /*const vproducto = new Producto.find(destacado,true);
     res.json(producto)*/
-    var productos = await Producto.find({destacado:true});//(criteria);
+    var productos = await Producto.find({destacado:false});//(criteria);
     res.json(productos);
 //http://localhost:3000/api/producto/destacado mostrara todo los true
 }
